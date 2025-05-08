@@ -10,5 +10,8 @@
     border-radius: $commonBorderRadius;
     font-weight: 600;
     color: #777;
+    &:hover {
+      background: rgba($themeClrPrimary, 0.2);
+    }
   }
 }

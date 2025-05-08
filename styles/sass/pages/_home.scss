@@ -10,8 +10,8 @@
 
   height: 100vh;
 
-  min-height: 80rem;
-  max-height: 120rem;
+  min-height: 70rem;
+  max-height: 100rem;
   position: relative;
 
   @include respond(phone) {
@@ -31,7 +31,7 @@
   }
   &__mouse-scroll-cont {
     position: absolute;
-    bottom: 3%;
+    bottom: 8%;
     left: 50%;
     transform: translateX(-50%);
 
@@ -49,10 +49,10 @@
     display: block;
     padding: 1.2rem;
     border-bottom: 2px solid #eee;
-    transition: background .3s;
+    transition: background 0.3s;
 
     &:hover {
-      background: rgba(#fff,.1);
+      background: rgba(#fff, 0.1);
     }
 
     &--bd-none {
@@ -81,7 +81,7 @@
   }
 
   &__info {
-    margin: 3rem auto 0 auto;
+    margin: 1rem auto 0 auto;
     max-width: 80rem;
   }
   &__cta {
@@ -98,7 +98,7 @@
     grid-gap: 10rem;
     @include respond(tab-port) {
       grid-template-columns: 1fr;
-      grid-gap: 8rem;
+      grid-gap: 1rem;
     }
     &-title {
       font-weight: 700;
@@ -106,6 +106,7 @@
       margin-bottom: 3rem;
       @include respond(phone) {
         font-size: 2.4rem;
+        margin-bottom: 1rem;
       }
     }
     &-details-para {
@@ -122,24 +123,34 @@
         margin-bottom: 4rem;
       }
     }
+    &-details-bottom {
+      font-size: 1.8rem;
+      color: grey;
+      line-height: 1.7;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
   }
 }
 
 .projects {
   &__row {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    grid-gap: 5rem;
-    margin-bottom: 11rem;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    margin-bottom: 5rem;
+    align-items: center;
+    justify-items: center;
 
     @include respond(tab-port) {
       grid-template-columns: 1fr;
       grid-gap: 2rem;
       margin-bottom: 8rem;
-    }
-
-    @include respond(tab-port) {
       text-align: center;
+      justify-self: center;
+    }
+    @include respond(phone) {
+      margin-bottom: 3rem;
     }
 
     &:last-child {
@@ -147,38 +158,107 @@
     }
 
     &-img-cont {
-      overflow: hidden;
+      width: 430px;
+      @include respond(phone) {
+        width: 350px;
+      }
     }
+
     &-img {
       width: 100%;
       display: block;
       object-fit: cover;
+      position: relative;
+      transition: 0.2s ease-in;
+      z-index: 5;
     }
+
+    &-img-link {
+      position: relative;
+      display: inline-block;
+      color: #fff;
+      overflow: hidden;
+      z-index: 0;
+      border-radius: 25px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 6;
+        background: linear-gradient(
+          180deg,
+          rgba(36, 43, 51, 0) 0%,
+          #242b33 100%
+        );
+      }
+
+      &::after {
+        opacity: 0;
+        content: "";
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        right: 15px;
+        bottom: 15px;
+        z-index: 7;
+        border: 3px double rgba(255, 255, 255, 0.4);
+        border-radius: 25px;
+        transition: opacity 0.2s ease-in;
+      }
+
+      &:hover {
+        color: #fff;
+
+        &::after {
+          opacity: 1;
+        }
+
+        .projects__row-img {
+          transform: scale(1.1);
+          filter: contrast(120%) brightness(1.2) saturate(1.2);
+        }
+      }
+    }
+
     &-content {
       padding: 2rem 0;
       display: flex;
       justify-content: center;
       flex-direction: column;
       align-items: flex-start;
+      align-self: center;
+      justify-self: self-start;
 
       @include respond(tab-port) {
         align-items: center;
+        justify-self: center;
+      }
+
+      @include respond(phone) {
+        padding: 0;
       }
 
       &-title {
         font-weight: 700;
         font-size: 2.8rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
+        color: $themeClrPrimary;
         @include respond(phone) {
           font-size: 2.4rem;
         }
       }
+
       &-desc {
         font-size: 1.8rem;
         color: grey;
         max-width: 60rem;
         line-height: 1.7;
         margin-bottom: 3rem;
+
         @include respond(phone) {
           font-size: 1.7rem;
         }
@@ -197,97 +277,54 @@
   background-size: cover;
   background-position: center;
 
-  &__form-container {
+  &__container {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background: rgba(#fff, 2);
-    padding: 4rem;
-    margin-top: 6rem;
+    background: rgba(255, 255, 255, 0.9);
+
+    padding: 1.5rem;
     max-width: 80rem;
     text-align: right;
     width: 95%;
     border-radius: $commonBorderRadius;
-
-    margin: 5rem auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 2rem;
+    margin: 2rem auto 0 auto;
     @include respond(phone) {
       padding: 3rem;
     }
   }
-  &__form-field {
-    margin-bottom: 4rem;
-    @include respond(phone) {
-      margin-bottom: 3rem;
-    }
-  }
-  &__form-label {
-    color: #666;
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    display: block;
-    text-align: left;
-  }
-  &__form-input {
-    color: #333;
-    padding: 2rem;
-    width: 100%;
-    border: 1px solid rgb(235, 235, 235);
-    font-size: 1.6rem;
-    letter-spacing: 0px;
-    background: rgba(rgb(240, 240, 240), 1);
-    border-radius: $commonBorderRadius;
+  &__info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    /* Code for Modern Browsers */
-    &::placeholder {
-      color: #999;
-      font-weight: 600;
-      font-size: 1.6rem;
-    }
-
-    /* Code for WebKit, Blink, Edge */
-    &::-webkit-input-placeholder {
-      color: #999;
-      font-weight: 600;
-      font-size: 1.6rem;
-    }
-
-    /* Code for Internet Explorer 10-11 */
-    &:-ms-input-placeholder {
-      color: #999;
-      font-weight: 600;
-      font-size: 1.6rem;
-    }
-
-    /* Code for Microsoft Edge */
-    &::-ms-input-placeholder {
-      color: #999;
-      font-weight: 600;
-      font-size: 1.6rem;
-    }
-
-    /* Code for Mozilla Firefox 4 to 18 */
-    &:-moz-placeholder {
-      opacity: 1;
-      color: #999;
-      font-weight: 600;
-      font-size: 1.6rem;
-    }
-
-    /* Code for Mozilla Firefox 19+ */
-    &::-moz-placeholder {
-      opacity: 1;
-      color: #999;
-      font-weight: 600;
-      font-size: 1.6rem;
+    color: #242b33;
+    &-link {
+      transition: all 0.5s;
+      &:hover {
+        transform: scale(1.2);
+        transition: all 0.5s;
+      }
     }
   }
-  &__btn {
-    width: 30%;
-
-    padding: 2rem 4rem;
-    font-size: 1.6rem;
-    @include respond(phone) {
-      width: 100%;
+  &__social-cont {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: rgba($themeClrPrimary, 0.8);
+    &-link {
+      transition: all 0.5s;
+      &:hover {
+        transform: scale(1.2);
+        transition: all 0.5s;
+      }
     }
   }
 }

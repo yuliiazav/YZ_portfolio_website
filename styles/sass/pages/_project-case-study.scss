@@ -46,11 +46,14 @@
     margin: auto;
 
     &-title {
-      font-weight: 700;
-      font-size: 2.8rem;
-      margin-bottom: 3rem;
+      font-weight: 600;
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      font-style: italic;
+      color: #2d323a;
+
       @include respond(phone) {
-        font-size: 2.4rem;
+        display: none;
       }
     }
   }
