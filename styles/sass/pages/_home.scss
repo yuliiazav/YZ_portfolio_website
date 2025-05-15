@@ -192,7 +192,16 @@
         background: linear-gradient(
           180deg,
           rgba(36, 43, 51, 0) 0%,
-          #242b33 100%
+          #0b3f7b8a 100%
+        );
+        transition: background 0.3s ease;
+      }
+
+      &:hover::before {
+        background: linear-gradient(
+          180deg,
+          rgba(32, 96, 170, 0) 0%,
+          rgba(195, 74, 18, 0.1) 100%
         );
       }
 
@@ -219,7 +228,8 @@
 
         .projects__row-img {
           transform: scale(1.1);
-          filter: contrast(120%) brightness(1.2) saturate(1.2);
+          transition: all 1s;
+          // filter: contrast(80%) brightness(1) saturate(1.2);
         }
       }
     }
